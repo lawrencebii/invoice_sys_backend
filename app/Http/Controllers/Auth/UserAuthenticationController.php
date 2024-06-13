@@ -68,4 +68,38 @@ class UserAuthenticationController extends Controller
            'error'=>true
            ], 401);
     }
+    public function userDetails(Request $request,$id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            return response([
+                'user' => $user,
+                'message' => 'user found',
+            ], 200
+            );
+        }
+        return response([
+            'message' => 'user not found',
+            'error' => true
+        ], 401);
+    }
+    public  function  newPassword(Request $request , $id){
+        $request->validate([
+            'password' => ['required',  Rules\Password::defaults()],
+        ]);
+        $user = User::find($id);
+        if ($user) {
+            $user->password = Hash::make($request->string('password'));
+            $user->save();
+            return response([
+                'user' => $user,
+                'message' => 'password updated successfully',
+            ], 200
+            );
+        }
+        return response([
+            'message' => 'user not found',
+            'error' => true
+        ], 401);
+    }
 }

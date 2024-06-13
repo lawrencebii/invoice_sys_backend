@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         ;
-        if (Gate::authorize('admin')) {
+        if (!Gate::authorize('admin')) {
             return response()->json(['message' => 'You must be an admin'], 403);
         }
         return $next($request);
