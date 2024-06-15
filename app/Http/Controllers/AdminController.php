@@ -10,6 +10,7 @@ class AdminController extends Controller
 {
     //
     public function allUsers(Request $request){
+        if(Gate::allows('admin'))
         $users = User::all();
         return response(['users'=>$users]);
     }
@@ -42,4 +43,5 @@ class AdminController extends Controller
         $user->save();
         return response(['message' => 'Admin role removed successfully']);
     }
+
 }

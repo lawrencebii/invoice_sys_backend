@@ -102,4 +102,10 @@ class UserAuthenticationController extends Controller
             'error' => true
         ], 401);
     }
+    public function updateUser(Request $request, string $id)
+    {
+        $user = User::find($id);
+        $user->update($request->all());
+        return response(['message' => 'User updated successfully']);
+    }
 }
