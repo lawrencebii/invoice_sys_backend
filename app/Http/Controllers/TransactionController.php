@@ -106,6 +106,15 @@ return response()->json([
         ]);
 
     }
+    public function allUserMpesaTransactions(Request $request){
+        $transactions = Transaction::where('user_id', Auth::id())->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Transactions retrieved successfully',
+            'data' => $transactions
+
+        ]);
+    }
     public function initiateMpesaPayment(Request $request)
     {
         $callback_url = 'https://0a92-105-163-156-105.ngrok-free.app/api/daraja-callback';

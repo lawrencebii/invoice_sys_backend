@@ -14,6 +14,7 @@ Route::middleware('guest')->group(function () {
    Route::post('/daraja-callback',[TransactionController::class,'daraCallback']);
 
 
+
 });
 //    protected user routes
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -30,6 +31,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/send-stk-push',[TransactionController::class,'initiateMpesaPayment']);
     Route::get('user/{id}', [UserAuthenticationController::class, 'userDetails']);
     Route::get('user/{id}/invoices', [InvoiceController::class, 'allUserInvoices']);
+    Route::get('/transactions',[TransactionController::class,'allUserMpesaTransactions']);
 //admin
         Route::middleware(['admin'])->group(function () {
             Route::get('profile-admin', function (Request $request) {
