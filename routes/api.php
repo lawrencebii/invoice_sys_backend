@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Auth\UserAuthenticationController;
@@ -10,6 +11,9 @@ use \App\Http\Controllers\InvoiceController ;
 Route::middleware('guest')->group(function () {
    Route::post('/login',[UserAuthenticationController::class,'login']);
    Route::post('/register', [UserAuthenticationController::class, 'register']);
+   Route::post('/daraja-callback',[TransactionController::class,'daraCallback']);
+
+
 });
 //    protected user routes
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -23,7 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
        );
        Route::post('new-password', [UserAuthenticationController::class, 'newPassword']);
     Route::post('logout', [UserAuthenticationController::class, 'logout']);
-
+    Route::post('/send-stk-push',[TransactionController::class,'initiateMpesaPayment']);
     Route::get('user/{id}', [UserAuthenticationController::class, 'userDetails']);
     Route::get('user/{id}/invoices', [InvoiceController::class, 'allUserInvoices']);
 //admin
