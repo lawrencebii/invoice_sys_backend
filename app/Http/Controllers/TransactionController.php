@@ -119,7 +119,7 @@ return response()->json([
     }
     public function initiateMpesaPayment(Request $request)
     {
-        $callback_url = 'https://invoicesysbackend-production-641c.up.railway.app/';
+        $callback_url = 'https://invoicesysbackend-production-641c.up.railway.app/daraja-callback';
         $invoice_number = $request->input('invoice_id');
         $phone_no = $this->formatPhoneNumber($request->input('phone_no'));
         $amount = $request->input('amount');
