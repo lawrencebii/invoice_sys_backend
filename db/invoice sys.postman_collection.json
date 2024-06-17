@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "8af46c17-227f-4a9b-a0eb-efbd8ad02e5e",
+		"name": "invoice sys",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25675305",
+		"_collection_link": "https://online-spaces.postman.co/workspace/My-Workspace~d5d15201-6379-40fd-8d08-1b794346b841/collection/25675305-8af46c17-227f-4a9b-a0eb-efbd8ad02e5e?action=share&source=collection_link&creator=25675305"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "get-invoices",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}api/invoices"
+					},
+					"response": []
+				},
+				{
+					"name": "Invoice -details",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "create invoice",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "Bearer 1|jbhrqcCzUMPFTJdCRYkz1M1lBybIE14hkrzp2XxH3a704dc7"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}api/user/invoices/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Send stk push",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"invoice_id\":123,\r\n    \"amount\":1,\r\n    \"phone_no\": \"0114340314\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}api/send-stk-push"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}api/transactions"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "Bearer 1|jbhrqcCzUMPFTJdCRYkz1M1lBybIE14hkrzp2XxH3a704dc7"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "home",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "{{url}}"
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Lawrence Bii",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "biikipkemoialex@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "254114340314",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Nairobi",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{url}}api/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jast.keira@example.org",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{url}}api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "All Users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "{{url}}api/all-users"
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "Bearer 1|jbhrqcCzUMPFTJdCRYkz1M1lBybIE14hkrzp2XxH3a704dc7"
+					}
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Lawrence Bii\",\r\n        \"email\": \"biikipkemoialex@gmail.com\",\r\n        \"phone\": \"254114340314\",\r\n        \"address\": \"Nairobi\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}api/update/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Initiate a Lipa na M-Pesa Online Payment Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <Access-Token>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"BusinessShortCode\": \" \",\r\n    \"Password\": \" \",\r\n    \"Timestamp\": \" \",\r\n    \"TransactionType\": \"CustomerPayBillOnline\",\r\n    \"Amount\": \" \",\r\n    \"PartyA\": \" \",\r\n    \"PartyB\": \" \",\r\n    \"PhoneNumber\": \" \",\r\n    \"CallBackURL\": \"https://ip_address:port/callback\",\r\n    \"AccountReference\": \" \",\r\n    \"TransactionDesc\": \" \"\r\n}"
+				},
+				"url": "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+			},
+			"response": []
+		},
+		{
+			"name": "Query the Transaction Status of an M-Pesa Transaction Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <Access-Token>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Initiator\": \"\",\r\n    \"SecurityCredential\": \"\",\r\n    \"CommandID\": \"TransactionStatusQuery\",\r\n    \"TransactionID\": \"\",\r\n    \"PartyA\": \"\",\r\n    \"IdentifierType\": \"\",\r\n    \"ResultURL\": \"\",\r\n    \"QueueTimeOutURL\": \"\",\r\n    \"Remarks\": \"\",\r\n    \"Occasion\": \"\"\r\n}"
+				},
+				"url": "https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query"
+			},
+			"response": []
+		},
+		{
+			"name": "Daraja callback",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "Bearer 4|DPpvExphrgLPqqgtPPyeq4J843HqVRb0wtsZl9nr60722d69"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://9a2e-105-163-156-105.ngrok-free.app/",
+			"type": "string"
+		}
+	]
+}
