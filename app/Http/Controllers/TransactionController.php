@@ -107,7 +107,9 @@ return response()->json([
 
     }
     public function allUserMpesaTransactions(Request $request){
+
         $transactions = Transaction::where('user_id', Auth::id())->get();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Transactions retrieved successfully',
@@ -117,7 +119,7 @@ return response()->json([
     }
     public function initiateMpesaPayment(Request $request)
     {
-        $callback_url = 'https://0a92-105-163-156-105.ngrok-free.app/api/daraja-callback';
+        $callback_url = 'https://invoicesysbackend-production-641c.up.railway.app/';
         $invoice_number = $request->input('invoice_id');
         $phone_no = $this->formatPhoneNumber($request->input('phone_no'));
         $amount = $request->input('amount');
