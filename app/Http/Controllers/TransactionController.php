@@ -150,7 +150,7 @@ return response()->json(['update'=>$update]);
     }
     public function allUserMpesaTransactions(Request $request){
 
-        $transactions = Transaction::where('user_id', Auth::id())->get();
+        $transactions = DB::table('mpesa_transactions')->where('user_id', Auth::id())->get();
 
         return response()->json([
             'status' => 'success',
