@@ -20,8 +20,8 @@ trait MpesaUtil{
             'Authorization: Basic ' . $credentials,
             'Content-Type: application/json'
         ));
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         $response = curl_exec($ch);
 
         if ($response === false) {
