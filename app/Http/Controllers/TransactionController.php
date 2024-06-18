@@ -118,7 +118,7 @@ return response()->json([
  try{
      $amount = $data->Body->stkCallback->CallbackMetadata->Item[0]->Value;
      $mpesaReceiptNo = $data->Body->stkCallback->CallbackMetadata->Item[1]->Value;
-     $transactionDate = $data->Body->stkCallback->CallbackMetadata->Item[3]->Value;
+
  }catch (\Exception $e){
      \Log::error("Daraja: " . $e->getMessage());
      $amount = DB::table('mpesa_transactions')->where('checkout_request_id', $checkoutReqId)->value('txn_amount');

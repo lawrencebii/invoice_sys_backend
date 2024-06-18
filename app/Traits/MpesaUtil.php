@@ -20,8 +20,8 @@ trait MpesaUtil{
             'Authorization: Basic ' . $credentials,
             'Content-Type: application/json'
         ));
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         $response = curl_exec($ch);
 
         if ($response === false) {
@@ -92,7 +92,7 @@ trait MpesaUtil{
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$accessToken));
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE); // Bypass SSL verification
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); //
 
             $curl_post_data = array(
