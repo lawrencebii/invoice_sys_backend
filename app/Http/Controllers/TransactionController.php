@@ -106,6 +106,48 @@ return response()->json([
         ]);
 
     }
+    public  function  newCallback(Request $request){
+        \Log::info("Request Callback ".$request->getContent());
+        $callback_res = file_get_contents("php://input");
+        $data = json_decode($callback_res);
+        Log::info("Daraja: " . json_encode($data));
+        $merchantReqId = $data->Body->stkCallback->MerchantRequestID;
+        $checkoutReqId = $data->Body->stkCallback->CheckoutRequestID;
+        $resultDesc = $data->Body->stkCallback->ResultDesc;
+        $result_code = $data->Body->stkCallback->ResultCode;
+ try{
+     $amount = $data->Body->stkCallback->CallbackMetadata->Item[0]->Value;
+     $mpesaReceiptNo = $data->Body->stkCallback->CallbackMetadata->Item[1]->Value;
+     $transactionDate = $data->Body->stkCallback->CallbackMetadata->Item[3]->Value;
+ }catch (\Exception $e){
+     \Log::error("Daraja: " . $e->getMessage());
+     $amount = DB::table('mpesa_transactions')->where('checkout_request_id', $checkoutReqId)->value('txn_amount');
+     $mpesaReceiptNo = DB::table('mpesa_transactions')->where('checkout_request_id', $checkoutReqId)->value('mpesa_receipt_no');
+ }
+
+
+
+        $userId = DB::table('mpesa_transactions')->where(
+            'checkout_request_id', $checkoutReqId)->value('order_id');
+        $invoiceId = DB::table('mpesa_transactions')->where(
+            'checkout_request_id', $checkoutReqId)->value('invoice_id');
+        \Log::info("STK callback received for user $userId with invoice $invoiceId");
+
+          $update= DB::table('mpesa_transactions')
+                ->where('checkout_request_id', $checkoutReqId)
+                ->update([
+                    'result_code' => $result_code,
+                    'result_desc' => $resultDesc,
+                    'txn_amount' => $amount,
+                    'mpesa_receipt_no' => $mpesaReceiptNo,
+
+
+                    'merchant_request_id' => $merchantReqId
+
+                ]);
+
+return response()->json(['update'=>$update]);
+    }
     public function allUserMpesaTransactions(Request $request){
 
         $transactions = Transaction::where('user_id', Auth::id())->get();
@@ -119,7 +161,8 @@ return response()->json([
     }
     public function initiateMpesaPayment(Request $request)
     {
-        $callback_url = 'https://invoicesysbackend-production-641c.up.railway.app/api/daraja-callback';
+//        $callback_url = "https://9126-105-163-156-28.ngrok-free.app/api/daraja-callback";
+        $callback_url ='https://invoicesysbackend-production-641c.up.railway.app/api/daraja-callback';
         $invoice_number = $request->input('invoice_id');
         $phone_no = $this->formatPhoneNumber($request->input('phone_no'));
         $amount = $request->input('amount');

@@ -11,7 +11,7 @@ use \App\Http\Controllers\InvoiceController ;
 Route::middleware('guest')->group(function () {
    Route::post('/login',[UserAuthenticationController::class,'login']);
    Route::post('/register', [UserAuthenticationController::class, 'register']);
-   Route::post('/daraja-callback',[TransactionController::class,'daraCallback']);
+   Route::any('/daraja-callback',[TransactionController::class,'newCallback']);
 
 
 
