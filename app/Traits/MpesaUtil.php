@@ -82,6 +82,8 @@ trait MpesaUtil{
         $transaction_type="CustomerPayBillOnline";
         \Log::info("Before acess token");
         $accessToken=$this->getAccessToken($consumerKey,$consumerSecret);
+
+
         \Log::info("Access token ".$accessToken);
         if(!empty($accessToken)){
 

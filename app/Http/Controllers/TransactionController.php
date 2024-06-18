@@ -165,6 +165,7 @@ return response()->json(['update'=>$update]);
         $callback_url ='https://invoicesysbackend-production-641c.up.railway.app/api/daraja-callback';
         $invoice_number = $request->input('invoice_id');
         $phone_no = $this->formatPhoneNumber($request->input('phone_no'));
+        $token = $this->getAccessToken("1ro2AjNb0GQT2MQVNDfgBjV4BOncIgeqTqgOaJERZ6eGslJR","T71A51JaxhMp5w956gde4hfRg51v961fvuAvEDAoWJsZ0KBGVuMttCRDA4UKjzxS");
         $amount = $request->input('amount');
 
         if ($phone_no != 'Invalid') {
@@ -183,6 +184,7 @@ return response()->json(['update'=>$update]);
                 $data = [
                     'status' => 'error',
                     'message' => 'MPESA STK Push failed please try again.!',
+                    'token'=>$token
                 ];
 
             }
