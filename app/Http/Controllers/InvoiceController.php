@@ -32,12 +32,13 @@ class InvoiceController extends Controller
     public function  allUserInvoices(Request $request, string $user_id){
 
 
-        $invoices = Invoice::where('user_id', $user_id)
-            ->with('user')
-            ->get();
+//        $invoices = Invoice::where('user_id', $user_id)
+//            ->with('user')
+//            ->get();
+        $invoices  = Invoice::all();
 
 
-        ;
+
         return response()->json([
             'success' => true,
             'data' => $invoices
